@@ -1,0 +1,19 @@
+.show-graph-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 250px;
+    border-radius: 10%;
+    border: 3px solid white;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+}
+.show-graph-button:hover{
+    cursor: pointer;
+    border-color: #a60bd9
+}
+.show-graph-button:active{
+    border-color: red;
+}

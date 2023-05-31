@@ -1,0 +1,10 @@
+.currency-change-by-time-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+
+    transition: 0.5s;
+}

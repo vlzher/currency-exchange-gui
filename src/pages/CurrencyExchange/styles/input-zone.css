@@ -1,0 +1,24 @@
+.input-zone{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 25px;
+    width: 100%;
+}
+.reverse-button{
+    background-image: url('../../assets/exchangeArrow.png');
+    background-size: cover;
+    background-position: center;
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+    border: 3px solid #dcd4d4;
+    transition: transform 0.4s ease;
+}
+.reverse-button:hover{
+    cursor: pointer;
+    border-color: #a60bd9;
+}
+.reverse-button.reversed {
+    transform: rotate(180deg);
+}

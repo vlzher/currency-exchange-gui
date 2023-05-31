@@ -1,0 +1,14 @@
+.currency-change-by-time-list-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 700px;
+    color: white;
+    font-size: 40px;
+    transition: 0.5s;
+    border-radius: 50%;
+}
+.currency-change-by-time-list-item:hover{
+    background-color: #a60bd9;
+}

@@ -1,0 +1,12 @@
+.currency-pickers div[role="button"] {
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    outline: none;
+    border: none;
+}
+.MuiSvgIcon-root{
+    color: #dcd4d4 !important;
+}

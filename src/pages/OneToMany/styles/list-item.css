@@ -1,0 +1,14 @@
+.one-to-many-list-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 800px;
+    color: white;
+    font-size: 40px;
+    transition: 0.5s;
+}
+.one-to-many-list-item:hover{
+    background-color: #a60bd9;
+    cursor: pointer;
+}

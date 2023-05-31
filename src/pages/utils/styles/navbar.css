@@ -1,0 +1,27 @@
+.navbar{
+    height: 80px;
+    width: 100%;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1d1d;
+    color: #d5d2d2;
+}
+.navbar-links{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #1e1d1d;
+    color: #d5d2d2;
+    font-size: 20px;
+    align-items: center;
+}
+.navbar-links a{
+    text-decoration: none;
+    color: #d5d2d2;
+    margin-left: 40px ;
+}
+.navbar-links a:hover{
+    text-decoration: underline;
+}
