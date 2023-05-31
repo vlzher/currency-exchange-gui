@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles/currency-picker.css';
 import { FormControl, MenuItem, Select } from '@mui/material';
-import { getSupportedCurrencies } from '../api/api';
+import { getSupportedCurrencies } from '../../api/api';
 const CurrencyPicker = ({ currency, setCurrency }) => {
   const [currencyList, setCurrencyList] = useState([]);
   useEffect(() => {

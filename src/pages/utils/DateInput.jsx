@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '@mui/material';
 
-const DateInput = ({ date, setDate }) => {
+const DateInput = ({ text = 'Date:', date, setDate }) => {
   return (
     <div
       style={{ display: 'flex', alignItems: 'center', width: '500px', justifyContent: 'center' }}>
@@ -14,7 +14,7 @@ const DateInput = ({ date, setDate }) => {
           alignItems: 'center',
           color: '#dcd4d4'
         }}>
-        Date:
+        {text}
       </div>
       <Input
         style={{ width: '250px', height: '50px', fontSize: '30px', marginRight: '1' }}

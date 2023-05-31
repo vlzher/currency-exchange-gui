@@ -1,8 +1,8 @@
 import React from 'react';
-import { FormControl, Input, MenuItem, Select } from '@mui/material';
-import '../styles/bottom-zone.css';
-import DateInput from '../DateInput';
-const BottomZone = ({ date, setDate, interbankRate, setInterbankRate }) => {
+import { FormControl, MenuItem, Select } from '@mui/material';
+import './styles/bottom-zone.css';
+import DateInput from '../utils/DateInput';
+const BottomZone = ({ date, setDate, interbankRate, setInterbankRate, onClick }) => {
   const interBankRates = {
     '+/- 0%': 1.0,
     '+/- 1%': 1.01,
@@ -14,7 +14,9 @@ const BottomZone = ({ date, setDate, interbankRate, setInterbankRate }) => {
   return (
     <div className="bottom-zone">
       <DateInput date={date} setDate={setDate} />
-      <button className="calculate-button">Calculate</button>
+      <button className="calculate-button" onClick={onClick}>
+        Calculate
+      </button>
       <div style={{ display: 'flex', alignItems: 'center', padding: '30px', width: '500px' }}>
         <div className="label-bottom" style={{ fontSize: '15px', width: '250px' }}>
           Preview interbank rate:

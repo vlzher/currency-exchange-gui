@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
-import '../styles/currency-change-by-time-list.css';
+import './styles/list.css';
 const List = ({ data, currencies }) => {
   return (
     <div className={'currency-change-by-time-list'}>

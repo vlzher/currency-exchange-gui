@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { VictoryChart, VictoryLine, VictoryZoomContainer, VictoryAxis } from 'victory';
-import './styles/chart.css';
-import { getHistoricalRatesByTimeframe } from '../../api/api';
+import './styles/graph.css';
 
-const Chart = () => {
-  const [chartData, setChartData] = useState([]);
-  useEffect(() => {
-    getHistoricalRatesByTimeframe('USD', '2021-09-01', '2021-09-30').then((res) =>
-      setChartData(res)
-    );
-  }, []);
-
+const Graph = ({ graphData }) => {
   return (
-    <div className="chart">
+    <div className="graph">
       <VictoryChart
         width={800}
         height={200}
@@ -53,10 +45,10 @@ const Chart = () => {
             }
           }}
         />
-        <VictoryLine data={chartData} x="x" y="y" style={{ data: { stroke: '#a60bd9' } }} />
+        <VictoryLine data={graphData} x="x" y="y" style={{ data: { stroke: '#a60bd9' } }} />
       </VictoryChart>
     </div>
   );
 };
 
-export default Chart;
+export default Graph;

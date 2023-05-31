@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '@mui/material';
 
-const CustomInput = ({ style, value, onChange }) => {
+const CustomInput = ({ style, value, onChange, step }) => {
   return (
     <Input
       type={'number'}
@@ -13,7 +13,7 @@ const CustomInput = ({ style, value, onChange }) => {
       slotProps={{
         input: {
           min: 0,
-          step: 0.1
+          step: step
         }
       }}
     />

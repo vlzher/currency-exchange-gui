@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/input-zone.css';
-import CustomInput from './CustomInput';
+import './styles/input-zone.css';
+import CustomInput from '../utils/CustomInput';
 const InputZone = ({ values, setValues, reverseCurrencies }) => {
   const [isReversed, setIsReversed] = useState(false);
   function buttonClickHandler() {
@@ -26,6 +26,7 @@ const InputZone = ({ values, setValues, reverseCurrencies }) => {
         onChange={setValues[0]}
         placeholder={values[0]}
         style={style}
+        step={0.1}
       />
       <button
         className={`reverse-button ${isReversed ? 'reversed' : ''}`}
@@ -36,6 +37,7 @@ const InputZone = ({ values, setValues, reverseCurrencies }) => {
         onChange={setValues[1]}
         placeholder={values[1]}
         style={style}
+        step={0.1}
       />
     </div>
   );

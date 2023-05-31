@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ListItem from './ListItem';
-import '../styles/one-to-many-list.css';
+import './styles/list.css';
 import { getSupportedCurrencies } from '../../api/api';
 const List = ({ list, onClick }) => {
   const [currencyList, setCurrencyList] = useState([]);
