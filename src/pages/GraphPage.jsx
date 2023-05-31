@@ -6,25 +6,29 @@ import ShowGraphButton from './Graph/ShowGraphButton';
 import { getHistoricalRatesByTimeframe } from '../api/api';
 import CustomInput from './utils/CustomInput';
 
-const GraphPage = () => {
+const GraphPage = ({ setIsActive, callTheAlert }) => {
   const [firstCurrency, setFirstCurrency] = useState('USD');
   const [secondCurrency, setSecondCurrency] = useState('BYN');
   const [isGraphShown, setIsGraphShown] = useState(false);
   const [dataGraph, setDataGraph] = useState([]);
   const [dateInterval, setDateInterval] = useState(90);
-  // eslint-disable-next-line no-unused-vars
-  const [isDataCorrect, setIsDataCorrect] = useState(true);
 
   function checkCorrectness() {
-    setIsDataCorrect(dateInterval <= 365 && dateInterval >= 1);
+    if (dateInterval > 365 || dateInterval < 1) {
+      callTheAlert('Date interval should be between 1 and 365 days');
+      return false;
+    }
+    return true;
   }
   function onClickHelper() {
-    checkCorrectness();
+    if (!checkCorrectness()) return;
+    setIsActive(true);
     setIsGraphShown(false);
-    getHistoricalRatesByTimeframe(firstCurrency, secondCurrency, dateInterval).then((res) =>
-      setDataGraph(res)
-    );
-    setIsGraphShown(true);
+    getHistoricalRatesByTimeframe(firstCurrency, secondCurrency, dateInterval).then((res) => {
+      setDataGraph(res);
+      setIsActive(false);
+      setIsGraphShown(true);
+    });
   }
   const styleInput = {
     width: '500px',

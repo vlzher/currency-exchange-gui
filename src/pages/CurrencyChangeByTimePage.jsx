@@ -7,7 +7,7 @@ import './CurrencyChangeByTime/styles/page.css';
 import List from './CurrencyChangeByTime/List';
 import { getExchangeRates } from '../api/api';
 import { checkIfDateCorrect } from '../utils/checkIfDateCorrect';
-const CurrencyChangeByTimePage = () => {
+const CurrencyChangeByTimePage = ({ setIsActive, callTheAlert }) => {
   const [firstCurrency, setFirstCurrency] = useState('USD');
   const [secondCurrency, setSecondCurrency] = useState('BYN');
 
@@ -17,21 +17,27 @@ const CurrencyChangeByTimePage = () => {
   const [data, setData] = useState([]);
 
   const [isListShowed, setIsListShowed] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [isCorrect, setIsCorrect] = useState(true);
 
-  function correctionChecker() {
-    checkIfDateCorrect(firstDate) && checkIfDateCorrect(secondDate)
-      ? setIsCorrect(true)
-      : setIsCorrect(false);
+  function checkCorrectness() {
+    if (!checkIfDateCorrect(firstDate) || !checkIfDateCorrect(secondDate)) {
+      callTheAlert('Incorrect date please use the date before the actual date!');
+      return false;
+    }
+    if (new Date(firstDate) > new Date(secondDate)) {
+      callTheAlert('The end date must be after the start date!');
+      return false;
+    }
+    return true;
   }
   function buttonHandler() {
-    correctionChecker();
+    if (!checkCorrectness()) return;
+    setIsActive(true);
     setIsListShowed(false);
-    getExchangeRates(firstDate, secondDate, secondCurrency, firstCurrency).then((res) =>
-      setData(res)
-    );
-    setIsListShowed(true);
+    getExchangeRates(firstDate, secondDate, secondCurrency, firstCurrency).then((res) => {
+      setData(res);
+      setIsListShowed(true);
+      setIsActive(false);
+    });
   }
   return (
     <>

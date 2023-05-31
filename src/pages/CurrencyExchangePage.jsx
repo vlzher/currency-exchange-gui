@@ -6,7 +6,7 @@ import BottomZone from './CurrencyExchange/BottomZone';
 import { convertCurrency } from '../api/api';
 import { checkIfDateCorrect } from '../utils/checkIfDateCorrect';
 
-const CurrencyExchangePage = () => {
+const CurrencyExchangePage = ({ setIsActive, callTheAlert }) => {
   const [firstCurrency, setFirstCurrency] = useState('USD');
   const [secondCurrency, setSecondCurrency] = useState('BYN');
 
@@ -16,8 +16,6 @@ const CurrencyExchangePage = () => {
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [interbankRate, setInterbankRate] = useState('+/- 0%');
   const [lastInterbankRate, setLastInterbankRate] = useState('+/- 0%');
-  // eslint-disable-next-line no-unused-vars
-  const [isDataCorrect, setIsDataCorrect] = useState(true);
 
   useEffect(() => {
     const lastCurrencyState = secondValue / (1 + lastInterbankRate[4] / 100);
@@ -26,17 +24,27 @@ const CurrencyExchangePage = () => {
   }, [interbankRate]);
 
   function checkCorrectness() {
-    setIsDataCorrect(firstValue >= 0 && checkIfDateCorrect(date));
+    if (firstValue < 0) {
+      callTheAlert('The value in input must be positive!');
+      return false;
+    }
+    if (!checkIfDateCorrect(date)) {
+      callTheAlert('The date must be before the actual date!');
+      return false;
+    }
+    return true;
   }
   async function buttonHelper() {
-    checkCorrectness();
+    if (!checkCorrectness()) return;
+    setIsActive(true);
     await convertCurrency(firstValue, firstCurrency, secondCurrency, date).then((res) => {
       setSecondValue(res);
+      setIsActive(false);
     });
   }
 
   function reverseCurrencies() {
-    let temp = firstCurrency;
+    const temp = firstCurrency;
     setFirstCurrency(secondCurrency);
     setSecondCurrency(temp);
   }

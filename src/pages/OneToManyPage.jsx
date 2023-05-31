@@ -6,23 +6,29 @@ import ShowButton from './utils/ShowButton';
 import List from './OneToMany/List';
 import { getHistoricalRates } from '../api/api';
 import { checkIfDateCorrect } from '../utils/checkIfDateCorrect';
-const OneToManyPage = () => {
+const OneToManyPage = ({ setIsActive, callTheAlert }) => {
   const [currency, setCurrency] = useState('USD');
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [data, setData] = useState([]);
   const [isListShowed, setIsListShowed] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [isDataCorrect, setIsDataCorrect] = useState(true);
 
-  function correctionChecker() {
+  function checkCorrectness() {
     const result = checkIfDateCorrect(date);
-    setIsDataCorrect(result);
+    if (!result) {
+      callTheAlert('Incorrect date please use the date before the actual date.');
+      return false;
+    }
+    return true;
   }
   function listHandler() {
-    correctionChecker();
+    if (!checkCorrectness()) return;
+    setIsActive(true);
     setIsListShowed(false);
-    getHistoricalRates(date, currency).then((res) => setData(res));
-    setIsListShowed(true);
+    getHistoricalRates(date, currency).then((res) => {
+      setData(res);
+      setIsListShowed(true);
+      setIsActive(false);
+    });
   }
 
   return (
